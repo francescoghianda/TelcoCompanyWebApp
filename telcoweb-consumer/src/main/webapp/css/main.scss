@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
+*{
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+$primary-color: #0c4876;
+
+.landing-page-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2em;
+  max-width: 900px;
+  margin: auto;
+  padding: 2em;
+
+  & > .bottom-space{
+    padding-top: 2em;
+    grid-column: 1/span 2;
+
+    & > h1{
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+input{
+  height: 36px;
+  width: 100%;
+  padding-left: .2em;
+  padding-right: .2em;
+  border-radius: .2em;
+  border: 1px solid $primary-color;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.primary-button{
+  display: block;
+  background: $primary-color;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 18px;
+  padding: .3em .6em;
+  border: 2px solid lighten($primary-color, 20);
+  border-radius: .2em;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+
+  &:hover{
+    background: lighten($primary-color, 25);
+  }
+}
+
+.form{
+  border-radius: .2em;
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+  background: transparentize($primary-color, .9);
+
+  &__input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5em;
+    width: 100%;
+  }
+}
+
+.container{
+  padding-top: 56px;
+}
+
+.navbar{
+  position: fixed;
+  display: flex;
+  flex-direction: row-reverse;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background: $primary-color;
+  color: #fff;
+  padding: 0 1em;
+
+  &__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 .5em;
+  }
+
+  & > a{
+    background: $primary-color;
+    transition: background-color .1s ease;
+    &:hover{
+      background: lighten($primary-color, 20);
+    }
+  }
+}
