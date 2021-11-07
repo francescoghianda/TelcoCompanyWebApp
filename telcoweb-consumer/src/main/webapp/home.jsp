@@ -1,5 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<jsp:useBean id="username" scope="request" type="java.lang.String"/>
+<jsp:useBean id="packages" scope="request" type="java.util.List<it.polimi.telcoejb.entities.ServicePackage>"/>
+
+<c:set var="newLine" value="\n"/>
 <html>
 <head>
     <title>Home - Telco</title>
@@ -9,7 +15,7 @@
 <body>
 
 <header class="navbar">
-    <jsp:useBean id="username" scope="request" type="java.lang.String"/>
+
 
     <c:choose>
         <c:when test="${username.length() != 0}">
@@ -31,33 +37,67 @@
 
     <h1>Service Packages</h1>
 
-    <jsp:useBean id="packages" scope="request" type="java.util.List<it.polimi.telcoejb.entities.ServicePackage>"/>
-    <table>
-        <thead>
-            <tr>
-                <td>Name</td>
-                <td>Services</td>
-                <td>Optional Products</td>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${packages}" var="servicePackage">
-                <tr>
-                    <td>${servicePackage.name}</td>
-                    <td>
 
-                    </td>
-                    <td>
-                        <c:forEach items="${servicePackage.optionalProducts}" var="product">
-                            ${product.name},
-                        </c:forEach>
-                    </td>
-                </tr>
 
-            </c:forEach>
-        </tbody>
+    <div class="sp-grid">
 
-    </table>
+        <c:forEach items="${packages}" var="servicePackage">
+            <div class="sp-card">
+                <h1 class="sp-card__name">${servicePackage.name}</h1>
+                <h2>Included services</h2>
+                <ul class="sp-card__services">
+                    <c:forEach items="${servicePackage.mobileInternetServices}" var="service">
+                        <li>
+                            <h3>Mobile internet</h3>
+                            <table>
+                                <tbody>
+                                    <tr><th>Internet:</th><td>${service.gigabytes}GB</td></tr>
+                                    <tr><th>Extra fee:</th><td>${service.extraGigabytesFee}&nbsp;€/GB</td></tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </c:forEach>
+                    <c:forEach items="${servicePackage.fixedInternetServices}" var="service">
+                        <li>
+                            <h3>Fixed internet</h3>
+                            <table>
+                                <tbody>
+                                <tr><th>Internet:</th><td>${service.gigabytes}GB</td></tr>
+                                <tr><th>Extra fee:</th><td>${service.extraGigabytesFee}&nbsp;€/GB</td></tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </c:forEach>
+                    <c:forEach items="${servicePackage.mobilePhoneServices}" var="service">
+                        <li>
+                            <h3>Mobile phone</h3>
+                            <table>
+                                <tbody>
+                                <tr><th>Minutes:</th><td>${service.minutes}&nbsp;min</td></tr>
+                                <tr><th>SMS:</th><td>${service.sms}</td></tr>
+                                <tr><th>Extra minutes fee:</th><td>${service.extraMinutesFee}&nbsp;€/min</td></tr>
+                                <tr><th>Extra sms fee:</th><td>${service.extraSmsFee}&nbsp;€/SMS</td></tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </c:forEach>
+                    <c:forEach items="${servicePackage.fixedPhoneServices}" var="service">
+                        <li>
+                            <h3>Fixed phone</h3>
+                            <p>Unlimited fixed phone calls</p>
+                        </li>
+                    </c:forEach>
+                </ul>
+                <h2>Optional products</h2>
+                <ul class="sp-card__op">
+                    <c:forEach items="${servicePackage.optionalProducts}" var="op">
+                        <li>${op.name}&nbsp;(${op.monthlyFee}&nbsp;€/month)</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:forEach>
+
+    </div>
 
 
 

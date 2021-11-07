@@ -1,0 +1,4 @@
+# Project exclude paths
+/out/
+/telcoejb/target/
+/telcoweb-consumer/target/

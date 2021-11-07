@@ -68,6 +68,8 @@ a {
 
 .container {
   padding-top: 56px;
+  max-width: 900px;
+  margin: auto;
 }
 
 .navbar {
@@ -95,6 +97,51 @@ a {
 }
 .navbar > a:hover {
   background: #1580d3;
+}
+
+.sp-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 0.5em;
+  grid-row-gap: 0.5em;
+}
+
+.sp-card {
+  background-color: aliceblue;
+  border-radius: 0.2em;
+  padding: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.sp-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+.sp-card__name {
+  margin-top: 0;
+}
+.sp-card__services {
+  list-style-type: none;
+  padding: 0;
+}
+.sp-card__services > li {
+  border: 2px solid #0c4876;
+  border-radius: 0.2em;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
+.sp-card__services h3 {
+  margin-top: 0;
+  margin-bottom: 0.4em;
+}
+.sp-card__services th, .sp-card__services td {
+  text-align: left;
+}
+.sp-card__services p {
+  margin: 0.3em 0;
+}
+.sp-card__op {
+  padding-left: 1em;
 }
 
 /*# sourceMappingURL=main.css.map */
