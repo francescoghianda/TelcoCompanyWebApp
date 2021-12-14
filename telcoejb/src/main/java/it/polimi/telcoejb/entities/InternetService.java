@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "mobile_internet_service")
-public class MobileInternetService extends Service {
+@Table(name = "internet_service")
+public class InternetService extends Service {
 
     @Column(name = "gigabytes")
     private int gigabytes;

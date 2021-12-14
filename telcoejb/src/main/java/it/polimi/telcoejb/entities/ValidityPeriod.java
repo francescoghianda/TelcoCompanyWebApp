@@ -12,5 +12,18 @@ public class ValidityPeriod {
 
     private int months;
 
+    @Column(name = "monthly_fee")
     private float monthlyFee;
+
+    public int getId() {
+        return id;
+    }
+
+    public int getMonths() {
+        return months;
+    }
+
+    public float getMonthlyFee() {
+        return monthlyFee;
+    }
 }

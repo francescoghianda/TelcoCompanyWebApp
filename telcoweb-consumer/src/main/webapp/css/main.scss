@@ -1,11 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
 
+$primary-color: #0c4876;
+
 *{
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
+  color: #252525;
 }
 
-$primary-color: #0c4876;
+.grey{
+  color: #6e6e6e;
+}
+
+.white{
+  color: #fff;
+}
 
 .landing-page-container{
   display: grid;
@@ -26,7 +35,8 @@ $primary-color: #0c4876;
   }
 }
 
-input{
+
+input, select{
   height: 36px;
   width: 100%;
   padding-left: .2em;
@@ -35,9 +45,31 @@ input{
   border: 1px solid $primary-color;
 }
 
+input[type=checkbox]{
+  height: 16px;
+  width: 16px;
+}
+
+.checkbox{
+  display: flex;
+  align-items: center;
+  padding: .5em 0;
+
+  & > label{
+    padding-left: .2em;
+  }
+}
+
 a{
   text-decoration: none;
   color: inherit;
+}
+
+hr{
+  width: 100%;
+  height: 1px;
+  background: $primary-color;
+  border: none;
 }
 
 .primary-button{
@@ -55,6 +87,57 @@ a{
 
   &:hover{
     background: lighten($primary-color, 25);
+  }
+}
+
+.rejected-orders-table{
+  width: 100%;
+  margin-bottom: 2em;
+  border-collapse: collapse;
+  border: 2px solid lighten($primary-color, 50);
+
+  th, td{
+    padding: 0 1em;
+  }
+  tr{
+    height: 48px;
+
+    &:nth-child(even){
+      background: lighten($primary-color, 70);
+    }
+  }
+  thead > tr{
+    background: lighten($primary-color, 50);
+  }
+
+  .primary-button{
+    font-size: 14px;
+  }
+
+  .al-right{
+    text-align: right;
+  }
+  .al-center{
+    text-align: center;
+  }
+}
+
+.message-box{
+  display: flex;
+  width: 100%;
+  height: 4em;
+  justify-content: center;
+  align-items: center;
+  border-radius: .2em;
+  margin-bottom: 1em;
+  font-size: 18px;
+  font-weight: bold;
+  border: 3px solid #007e00;
+  background: #8eee8e;
+
+  &--error{
+    background: #ff9b9b;
+    border-color: #dc0000;
   }
 }
 
@@ -82,7 +165,7 @@ a{
 .navbar{
   position: fixed;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   top: 0;
   left: 0;
   width: 100%;
@@ -91,12 +174,23 @@ a{
   color: #fff;
   padding: 0 1em;
 
+  &__logo{
+    padding: .5em 0;
+    margin-right: 1em;
+    height: 100%;
+    width: 100%;
+  }
+
   &__item{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     padding: 0 .5em;
+  }
+
+  &__spacer{
+    margin-right: auto;
   }
 
   & > a{
@@ -111,6 +205,7 @@ a{
 .sp-grid{
   display: grid;
   width: 100%;
+  margin-top: 2em;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: .5em;
   grid-row-gap: .5em;
@@ -157,4 +252,35 @@ a{
   &__op{
     padding-left: 1em;
   }
+}
+
+.summary{
+
+  margin-bottom: 2em;
+
+  &__row{
+    display: grid;
+    grid-template-columns: 80% 20%;
+  }
+
+  &__right{
+    text-align: right;
+  }
+
+  ul{
+    list-style-type: none;
+  }
+  h4{
+    margin: .3em;
+  }
+
+  table{
+    text-align: left;
+    width: 100%;
+
+    tr{
+      height: 36px;
+    }
+  }
+
 }

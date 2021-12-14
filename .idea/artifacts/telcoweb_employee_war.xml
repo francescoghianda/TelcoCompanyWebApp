@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="telcoweb-employee:war">
+    <output-path>$PROJECT_DIR$/telcoweb-employee/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>telcoweb-employee</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="telcoweb-employee-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="telcoweb-employee:war exploded" />
+    </root>
+  </artifact>
+</component>

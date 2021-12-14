@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="telcoejb">
+    <output-path>$PROJECT_DIR$/out/artifacts/telcoejb</output-path>
+    <root id="root">
+      <element id="jpa-descriptors" facet="telcoejb/jpa/JPA" />
+      <element id="module-output" name="telcoejb" />
+    </root>
+  </artifact>
+</component>

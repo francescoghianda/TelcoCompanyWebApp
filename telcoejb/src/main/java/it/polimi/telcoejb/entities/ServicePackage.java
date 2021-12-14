@@ -2,7 +2,8 @@ package it.polimi.telcoejb.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NamedQuery(name = "ServicePackage.findAll", query = "SELECT s FROM ServicePackage s")
@@ -15,40 +16,47 @@ public class ServicePackage {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    /*@OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_service",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
     )
-    private List<FixedPhoneService> fixedPhoneServices;
+    private Set<FixedPhoneService> fixedPhoneServices;*/
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_service",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
     )
-    private List<MobilePhoneService> mobilePhoneServices;
+    private Set<PhoneService> phoneServices;
+
+    /*@OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "service_package_service",
+            joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
+            inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
+    )
+    private Set<FixedInternetService> fixedInternetServices;*/
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_service",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
     )
-    private List<FixedInternetService> fixedInternetServices;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "service_package_service",
-            joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
-            inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
-    )
-    private List<MobileInternetService> mobileInternetServices;
+    private Set<InternetService> internetServices;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_optional_product",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="optional_product_id", referencedColumnName="id")
     )
-    private List<OptionalProduct> optionalProducts;
+    private Set<OptionalProduct> optionalProducts;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "service_package_validity_period",
+            joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
+            inverseJoinColumns= @JoinColumn(name="validity_period_id", referencedColumnName="id")
+    )
+    private Set<ValidityPeriod> validityPeriods;
 
     public int getId() {
         return id;
@@ -66,43 +74,60 @@ public class ServicePackage {
         this.name = name;
     }
 
-    public List<FixedPhoneService> getFixedPhoneServices() {
+    /*public Set<FixedPhoneService> getFixedPhoneServices() {
         return fixedPhoneServices;
+    }*/
+
+    public Set<PhoneService> getPhoneServices() {
+        return phoneServices;
     }
 
-    public List<MobilePhoneService> getMobilePhoneServices() {
-        return mobilePhoneServices;
-    }
-
-    public List<FixedInternetService> getFixedInternetServices() {
+    /*public Set<FixedInternetService> getFixedInternetServices() {
         return fixedInternetServices;
+    }*/
+
+    public Set<InternetService> getInternetServices() {
+        return internetServices;
     }
 
-    public List<MobileInternetService> getMobileInternetServices() {
-        return mobileInternetServices;
-    }
-
-    public List<OptionalProduct> getOptionalProducts(){
+    public Set<OptionalProduct> getOptionalProducts(){
         return optionalProducts;
     }
 
-    public void addFixedPhoneService(FixedPhoneService service){
+    public Set<ValidityPeriod> getValidityPeriods(){
+        return validityPeriods;
+    }
+
+    /*public void addFixedPhoneService(FixedPhoneService service){
         fixedPhoneServices.add(service);
+    }*/
+
+    public void addPhoneService(PhoneService service){
+        phoneServices.add(service);
     }
 
-    public void addMobilePhoneService(MobilePhoneService service){
-        mobilePhoneServices.add(service);
-    }
-
-    public void addFixedInternetService(FixedInternetService service){
+    /*public void addFixedInternetService(FixedInternetService service){
         fixedInternetServices.add(service);
-    }
+    }*/
 
-    public void addMobileInternetService(MobileInternetService service){
-        mobileInternetServices.add(service);
+    public void addInternetService(InternetService service){
+        internetServices.add(service);
     }
 
     public void addOptionalProduct(OptionalProduct optionalProduct){
         optionalProducts.add(optionalProduct);
+    }
+
+    public void addValidityPeriod(ValidityPeriod validityPeriod){
+        validityPeriods.add(validityPeriod);
+    }
+
+    public Set<Service> getAllService(){
+        Set<Service> services = new HashSet<>();
+        //services.addAll(fixedPhoneServices);
+        services.addAll(phoneServices);
+        services.addAll(internetServices);
+        //services.addAll(fixedInternetServices);
+        return services;
     }
 }

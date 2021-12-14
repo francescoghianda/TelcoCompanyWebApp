@@ -1,7 +1,12 @@
 package it.polimi.telcoejb.entities;
 
+import it.polimi.telcoejb.utils.UserRole;
 import jakarta.persistence.*;
 
+import java.util.Set;
+import java.util.function.Function;
+
+@NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
 @Table(name = "user")
 @Entity
 public class User {
@@ -17,6 +22,34 @@ public class User {
     private String password;
 
     private boolean insolvent;
+
+    @Column(name = "failed_payments")
+    private int failedPayments;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
+
+    public int getFailedPayments() {
+        return failedPayments;
+    }
+
+    public void setFailedPayments(int failedPayments){
+        this.failedPayments = failedPayments;
+    }
+
+    public int incrementAndGetFailedPayments(){
+        this.failedPayments++;
+        return failedPayments;
+    }
+
+    public int decrementAndGetFailedPayments(){
+        this.failedPayments--;
+        if(this.failedPayments < 0) this.failedPayments = 0;
+        return failedPayments;
+    }
 
     public boolean isInsolvent() {
         return insolvent;
@@ -56,5 +89,17 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Role> getRoles(){
+        return roles;
+    }
+
+    public boolean hasRole(UserRole role){
+        return roles.stream().map((Function<Role, Object>) Role::getRole).anyMatch(r -> r == role);
     }
 }
