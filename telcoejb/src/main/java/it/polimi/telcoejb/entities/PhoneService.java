@@ -2,10 +2,12 @@ package it.polimi.telcoejb.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "phone_service")
+@NamedQuery(name = "PhoneService.findAll", query = "SELECT s FROM PhoneService s")
 public class PhoneService extends Service{
 
     private int minutes;

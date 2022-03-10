@@ -3,6 +3,7 @@ package it.polimi.telcoejb.entities;
 import jakarta.persistence.*;
 
 @NamedQuery(name = "OptionalProduct.findByIds", query = "SELECT o FROM OptionalProduct o WHERE o.id IN :ids")
+@NamedQuery(name = "OptionalProduct.findAll", query = "SELECT o from OptionalProduct o")
 @Table(name = "optional_product")
 @Entity
 public class OptionalProduct {

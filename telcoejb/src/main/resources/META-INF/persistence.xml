@@ -11,7 +11,7 @@
     <jta-data-source>Telco_Database</jta-data-source>
     <class>it.polimi.telcoejb.entities.User</class>
     <properties>
-      <property name="openjpa.Log" value="DefaultLevel=WARN,Runtime=INFO,Tool=INFO,SQL=TRACE"/>
+      <property name="openjpa.Log" value="DefaultLevel=WARN,Runtime=WARN,Tool=WARN,SQL=TRACE"/>
     </properties>
   </persistence-unit>
 

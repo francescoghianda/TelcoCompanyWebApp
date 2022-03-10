@@ -45,7 +45,7 @@ public class PaymentService {
             order.setStatus(OrderStatus.REJECTED);
             order.getOwner().setInsolvent(true);
             int failedPayments = order.getOwner().incrementAndGetFailedPayments();
-            if(failedPayments >= 3) alertService.createOrUpdateAlert(order);
+            if(failedPayments >= 3) alertService.createAlert(order);
             userService.save(order.getOwner());
         }
 

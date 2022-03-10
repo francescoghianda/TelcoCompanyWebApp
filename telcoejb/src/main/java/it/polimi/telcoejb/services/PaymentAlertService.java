@@ -43,4 +43,13 @@ public class PaymentAlertService {
             alert.setCreationTime(Timestamp.from(Instant.now()));
         }
     }
+
+    public void createAlert(Order order){
+        PaymentAlert alert = new PaymentAlert();
+        em.persist(alert);
+
+        alert.setUser(order.getOwner());
+        alert.setAmount(order.getTotalPrice());
+        alert.setCreationTime(Timestamp.from(Instant.now()));
+    }
 }

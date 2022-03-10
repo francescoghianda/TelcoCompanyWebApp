@@ -2,10 +2,12 @@ package it.polimi.telcoejb.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "internet_service")
+@NamedQuery(name = "InternetService.findAll", query = "SELECT s FROM InternetService s")
 public class InternetService extends Service {
 
     @Column(name = "gigabytes")
