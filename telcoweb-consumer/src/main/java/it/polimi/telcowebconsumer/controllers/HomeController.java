@@ -37,12 +37,12 @@ public class HomeController extends HttpServlet {
 
         if(username != null){
             User user = userService.findByUsername(username);
-            Set<Order> rejectedOrders = orderService.findRejectedOrder(username);
+            List<Order> rejectedOrders = orderService.findRejectedOrder(username);
             req.setAttribute("rejectedOrders", rejectedOrders);
             req.setAttribute("user", user);
         }
 
-        Set<ServicePackage> servicePackageList = servicePackageService.getAllServicePackages();
+        List<ServicePackage> servicePackageList = servicePackageService.getAllServicePackages();
 
         req.setAttribute("packages", servicePackageList);
 

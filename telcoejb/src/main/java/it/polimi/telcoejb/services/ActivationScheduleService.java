@@ -9,7 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Stateless
 public class ActivationScheduleService {
@@ -22,8 +22,8 @@ public class ActivationScheduleService {
      * @param order The order for which is needed to create the activation schedule
      */
     public void create(Order order){
-        Set<Service> services = order.getServicePackage().getAllService();
-        Set<OptionalProduct> optionalProducts = order.getOptionalProducts();
+        List<Service> services = order.getServicePackage().getAllService();
+        List<OptionalProduct> optionalProducts = order.getOptionalProducts();
         LocalDate activationDate = order.getStartDate().toLocalDate();
         LocalDate deactivationDate = activationDate.plusMonths(order.getValidityPeriod().getMonths());
 

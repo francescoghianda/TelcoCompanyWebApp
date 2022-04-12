@@ -1,7 +1,7 @@
 package it.polimi.telcowebconsumer.controllers;
 
 import it.polimi.telcoejb.entities.Order;
-import it.polimi.telcoejb.externalServices.PaymentService;
+import it.polimi.telcoejb.services.PaymentService;
 import it.polimi.telcoejb.services.OrderService;
 import it.polimi.telcoejb.utils.OrderStatus;
 import jakarta.ejb.EJB;
@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 @WebServlet("/execute-payment")

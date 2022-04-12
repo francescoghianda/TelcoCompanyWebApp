@@ -31,7 +31,7 @@ public class CreateSubscriptionController extends HttpServlet {
         Date startDate = Date.valueOf(req.getParameter("start-date"));
         String[] optionalProductsIds = req.getParameterValues("opt-product");
 
-        Set<Integer> optionalProductsIdList = new HashSet<>();
+        List<Integer> optionalProductsIdList = new ArrayList<>();
 
         if(optionalProductsIds != null){
             for(String id : optionalProductsIds){

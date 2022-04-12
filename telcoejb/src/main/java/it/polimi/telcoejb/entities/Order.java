@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @NamedQuery(name = "Order.findRejectedOrder", query = "SELECT ord FROM Order ord WHERE ord.status = it.polimi.telcoejb.utils.OrderStatus.REJECTED AND ord.owner.username = :username")
@@ -38,7 +39,7 @@ public class Order {
     @JoinTable(name = "order_optional_product",
             joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "optional_product_id", referencedColumnName = "id"))
-    private Set<OptionalProduct> optionalProducts;
+    private List<OptionalProduct> optionalProducts;
 
     @Column(name = "total_price")
     private float totalPrice;
@@ -47,11 +48,11 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.INVALID;
 
-    public Set<OptionalProduct> getOptionalProducts() {
+    public List<OptionalProduct> getOptionalProducts() {
         return optionalProducts;
     }
 
-    public void setOptionalProducts(Set<OptionalProduct> optionalProducts){
+    public void setOptionalProducts(List<OptionalProduct> optionalProducts){
         this.optionalProducts = optionalProducts;
     }
 

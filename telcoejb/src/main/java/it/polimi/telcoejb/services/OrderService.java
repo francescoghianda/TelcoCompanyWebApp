@@ -10,10 +10,8 @@ import jakarta.persistence.PersistenceContext;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Stateless
 public class OrderService {
@@ -43,7 +41,7 @@ public class OrderService {
      * @return The entity of the order without the id and the user
      * @throws InvalidServicePackageCombination If the validity period or at least one optional product are not available for the chosen service package
      */
-    public Order createOrder(int servicePackageId, int validityPeriodId, Date startDate, Set<Integer> optionalProductIds) throws InvalidServicePackageCombination {
+    public Order createOrder(int servicePackageId, int validityPeriodId, Date startDate, List<Integer> optionalProductIds) throws InvalidServicePackageCombination {
         Order order = new Order();
         //em.persist(order);
 
@@ -51,7 +49,7 @@ public class OrderService {
 
         ServicePackage servicePackage = servicePackageService.findById(servicePackageId);
         ValidityPeriod validityPeriod = validityPeriodService.findById(validityPeriodId);
-        Set<OptionalProduct> optionalProducts = optionalProductService.findByIds(optionalProductIds);
+        List<OptionalProduct> optionalProducts = optionalProductService.findByIds(optionalProductIds);
 
         //Check that the validity period and the optional products are available for the chosen service package
         if(!servicePackage.getValidityPeriods().contains(validityPeriod) ||
@@ -74,8 +72,8 @@ public class OrderService {
         return order;
     }
 
-    public Set<Order> findRejectedOrder(String username){
-        return new HashSet<>(em.createNamedQuery("Order.findRejectedOrder", Order.class).setParameter("username", username).getResultList());
+    public List<Order> findRejectedOrder(String username){
+        return em.createNamedQuery("Order.findRejectedOrder", Order.class).setParameter("username", username).getResultList();
     }
 
     public Optional<Order> findById(int orderId){

@@ -6,9 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Stateless
 public class OptionalProductService {
@@ -16,11 +14,11 @@ public class OptionalProductService {
     @PersistenceContext(unitName = "TelcoEJB")
     private EntityManager em;
 
-    public Set<OptionalProduct> findByIds(Set<Integer> optionalProductIds){
-        if(optionalProductIds.isEmpty()) return Collections.emptySet();
-        return new HashSet<>(em.createNamedQuery("OptionalProduct.findByIds", OptionalProduct.class)
+    public List<OptionalProduct> findByIds(List<Integer> optionalProductIds){
+        if(optionalProductIds.isEmpty()) return Collections.emptyList();
+        return em.createNamedQuery("OptionalProduct.findByIds", OptionalProduct.class)
                 .setParameter("ids", optionalProductIds)
-                .getResultList());
+                .getResultList();
     }
 
     public List<OptionalProduct> getAll(){

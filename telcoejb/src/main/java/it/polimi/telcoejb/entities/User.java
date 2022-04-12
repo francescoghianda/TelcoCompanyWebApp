@@ -3,10 +3,13 @@ package it.polimi.telcoejb.entities;
 import it.polimi.telcoejb.utils.UserRole;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
 @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
+@NamedQuery(name = "User.findInsolvent", query = "SELECT u FROM User u where u.insolvent = true")
 @Table(name = "user")
 @Entity
 public class User {
@@ -32,9 +35,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
-    public int getFailedPayments() {
-        return failedPayments;
-    }
 
     public void setFailedPayments(int failedPayments){
         this.failedPayments = failedPayments;

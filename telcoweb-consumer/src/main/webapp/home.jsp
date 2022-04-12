@@ -6,7 +6,7 @@
 <%@ page import="it.polimi.telcoejb.utils.ServiceType" %>
 
 <jsp:useBean id="username" scope="request" type="java.lang.String"/>
-<jsp:useBean id="packages" scope="request" type="java.util.Set<it.polimi.telcoejb.entities.ServicePackage>"/>
+<jsp:useBean id="packages" scope="request" type="java.util.List<it.polimi.telcoejb.entities.ServicePackage>"/>
 
 <c:set var="newLine" value="\n"/>
 <html>
@@ -23,7 +23,7 @@
 
     <%--@elvariable id="user" type="it.polimi.telcoejb.entities.User"--%>
     <c:if test="${username.length() != 0 && user.insolvent}">
-    <jsp:useBean id="rejectedOrders" scope="request" type="java.util.Set<it.polimi.telcoejb.entities.Order>"/>
+    <jsp:useBean id="rejectedOrders" scope="request" type="java.util.List<it.polimi.telcoejb.entities.Order>"/>
     <h1>Rejected Orders</h1>
     <table class="rejected-orders-table">
         <thead>

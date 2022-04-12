@@ -2,8 +2,8 @@ package it.polimi.telcoejb.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NamedQuery(name = "ServicePackage.findAll", query = "SELECT s FROM ServicePackage s")
@@ -14,6 +14,7 @@ public class ServicePackage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "name")
     private String name;
 
     /*@OneToMany(fetch = FetchType.EAGER)
@@ -28,7 +29,7 @@ public class ServicePackage {
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
     )
-    private Set<PhoneService> phoneServices;
+    private List<PhoneService> phoneServices;
 
     /*@OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_service",
@@ -42,21 +43,21 @@ public class ServicePackage {
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
     )
-    private Set<InternetService> internetServices;
+    private List<InternetService> internetServices;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_optional_product",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="optional_product_id", referencedColumnName="id")
     )
-    private Set<OptionalProduct> optionalProducts;
+    private List<OptionalProduct> optionalProducts;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_validity_period",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="validity_period_id", referencedColumnName="id")
     )
-    private Set<ValidityPeriod> validityPeriods;
+    private List<ValidityPeriod> validityPeriods;
 
     public int getId() {
         return id;
@@ -74,60 +75,57 @@ public class ServicePackage {
         this.name = name;
     }
 
-    /*public Set<FixedPhoneService> getFixedPhoneServices() {
-        return fixedPhoneServices;
-    }*/
-
-    public Set<PhoneService> getPhoneServices() {
+    public List<PhoneService> getPhoneServices() {
         return phoneServices;
     }
 
-    /*public Set<FixedInternetService> getFixedInternetServices() {
-        return fixedInternetServices;
-    }*/
-
-    public Set<InternetService> getInternetServices() {
+    public List<InternetService> getInternetServices() {
         return internetServices;
     }
 
-    public Set<OptionalProduct> getOptionalProducts(){
+    public List<OptionalProduct> getOptionalProducts(){
         return optionalProducts;
     }
 
-    public Set<ValidityPeriod> getValidityPeriods(){
+    public List<ValidityPeriod> getValidityPeriods(){
         return validityPeriods;
     }
 
-    /*public void addFixedPhoneService(FixedPhoneService service){
-        fixedPhoneServices.add(service);
+    public void setInternetServices(List<InternetService> internetServices){
+        this.internetServices = internetServices;
+    }
+
+    public void setPhoneServices(List<PhoneService> phoneServices){
+        this.phoneServices = phoneServices;
+    }
+
+    public void setOptionalProducts(List<OptionalProduct> optionalProducts){
+        this.optionalProducts = optionalProducts;
+    }
+
+    public void setValidityPeriods(List<ValidityPeriod> validityPeriods){
+        this.validityPeriods = validityPeriods;
+    }
+    /*public void setPhoneServices(List<PhoneService> phoneServices){
+        this.phoneServices = phoneServices;
+    }
+
+    public void addInternetServices(List<InternetService> internetServices){
+        this.internetServices = internetServices;
+    }
+
+    public void setOptionalProducts(List<OptionalProduct> optionalProducts){
+        this.optionalProducts = optionalProducts;
+    }
+
+    public void setValidityPeriods(List<ValidityPeriod> validityPeriods){
+        this.validityPeriods = validityPeriods;
     }*/
 
-    public void addPhoneService(PhoneService service){
-        phoneServices.add(service);
-    }
-
-    /*public void addFixedInternetService(FixedInternetService service){
-        fixedInternetServices.add(service);
-    }*/
-
-    public void addInternetService(InternetService service){
-        internetServices.add(service);
-    }
-
-    public void addOptionalProduct(OptionalProduct optionalProduct){
-        optionalProducts.add(optionalProduct);
-    }
-
-    public void addValidityPeriod(ValidityPeriod validityPeriod){
-        validityPeriods.add(validityPeriod);
-    }
-
-    public Set<Service> getAllService(){
-        Set<Service> services = new HashSet<>();
-        //services.addAll(fixedPhoneServices);
+    public List<Service> getAllService(){
+        List<Service> services = new ArrayList<>();
         services.addAll(phoneServices);
         services.addAll(internetServices);
-        //services.addAll(fixedInternetServices);
         return services;
     }
 }

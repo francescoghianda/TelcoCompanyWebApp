@@ -31,7 +31,7 @@ public class BuyServiceController extends HttpServlet {
             return;
         }
 
-        Set<ServicePackage> servicePackageList = servicePackageService.getAllServicePackages();
+        List<ServicePackage> servicePackageList = servicePackageService.getAllServicePackages();
         req.setAttribute("packages", servicePackageList);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/buy-service-1.jsp");

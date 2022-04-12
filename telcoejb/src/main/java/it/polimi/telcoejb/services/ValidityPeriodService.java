@@ -20,4 +20,8 @@ public class ValidityPeriodService {
     public ValidityPeriod findById(int validityPeriodId){
         return em.find(ValidityPeriod.class, validityPeriodId);
     }
+
+    public List<ValidityPeriod> findByIds(List<Integer> ids){
+        return em.createQuery("SELECT p FROM ValidityPeriod p WHERE p.id IN :ids", ValidityPeriod.class).setParameter("ids", ids).getResultList();
+    }
 }

@@ -9,6 +9,7 @@ import jakarta.persistence.PersistenceContext;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 @Stateless
 public class PaymentAlertService {
@@ -51,5 +52,9 @@ public class PaymentAlertService {
         alert.setUser(order.getOwner());
         alert.setAmount(order.getTotalPrice());
         alert.setCreationTime(Timestamp.from(Instant.now()));
+    }
+
+    public List<PaymentAlert> findByUserId(int userId){
+        return em.createNamedQuery("PaymentAlert.findByUserId", PaymentAlert.class).setParameter("userId", userId).getResultList();
     }
 }

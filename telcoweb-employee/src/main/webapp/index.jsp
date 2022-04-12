@@ -103,7 +103,7 @@
                         <legend><strong>Services</strong></legend>
                         <c:forEach items="${services}" var="service">
                             <div class="checkbox">
-                                <input type="checkbox" id="service-${service.id}" value="${service.id}">
+                                <input type="checkbox" id="service-${service.id}" value="${service.id}" name="services">
                                 <label for="service-${service.id}">
                                     <c:choose>
                                         <c:when test="${service.serviceType == 'FIXED_PHONE'}">
@@ -128,7 +128,7 @@
                         <legend><strong>Optional products</strong></legend>
                         <c:forEach items="${optionalProducts}" var="product">
                             <div class="checkbox">
-                                <input type="checkbox" id="product-${product.id}" value="${product.id}">
+                                <input type="checkbox" id="product-${product.id}" value="${product.id}" name="optional-products">
                                 <label for="product-${product.id}">${product.name} - ${product.monthlyFee} €/month</label>
                             </div>
                         </c:forEach>
@@ -138,7 +138,7 @@
                         <legend><strong>Validity periods</strong></legend>
                         <c:forEach items="${validityPeriods}" var="period">
                             <div class="checkbox">
-                                <input type="checkbox" id="period-${period.id}" value="${period.id}">
+                                <input type="checkbox" id="period-${period.id}" value="${period.id}" name="validity-periods">
                                 <label for="period-${period.id}">${period.months} months - ${period.monthlyFee} €/month</label>
                             </div>
                         </c:forEach>

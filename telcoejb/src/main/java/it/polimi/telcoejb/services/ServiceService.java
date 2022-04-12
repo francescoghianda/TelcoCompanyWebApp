@@ -9,15 +9,17 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 @Stateless
 public class ServiceService {
 
     @PersistenceContext(unitName = "TelcoEJB")
     private EntityManager em;
+
+    public List<Service> findByIds(List<Integer> ids){
+        return em.createQuery("SELECT s FROM Service s WHERE s.id IN :ids", Service.class).setParameter("ids", ids).getResultList();
+    }
 
     public void createPhoneService(ServiceType serviceType, int minutes, int sms, float minutesFee, float smsFee){
         if(serviceType != ServiceType.FIXED_PHONE && serviceType != ServiceType.MOBILE_PHONE) throw new IllegalArgumentException();

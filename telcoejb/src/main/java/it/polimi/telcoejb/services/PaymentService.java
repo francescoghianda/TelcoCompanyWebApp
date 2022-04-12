@@ -1,16 +1,12 @@
-package it.polimi.telcoejb.externalServices;
+package it.polimi.telcoejb.services;
 
 import it.polimi.telcoejb.entities.Order;
-import it.polimi.telcoejb.services.ActivationScheduleService;
-import it.polimi.telcoejb.services.OrderService;
-import it.polimi.telcoejb.services.PaymentAlertService;
-import it.polimi.telcoejb.services.UserService;
 import it.polimi.telcoejb.utils.OrderStatus;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 
+import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 @Stateless
 public class PaymentService {
@@ -33,7 +29,7 @@ public class PaymentService {
         if(successfulPayment){
 
             if(order.getStatus().equals(OrderStatus.REJECTED)){
-                Set<Order> rejectedOrders = orderService.findRejectedOrder(order.getOwner().getUsername());
+                List<Order> rejectedOrders = orderService.findRejectedOrder(order.getOwner().getUsername());
                 if(rejectedOrders.isEmpty()) order.getOwner().setInsolvent(false);
                 userService.save(order.getOwner());
             }
@@ -45,7 +41,8 @@ public class PaymentService {
             order.setStatus(OrderStatus.REJECTED);
             order.getOwner().setInsolvent(true);
             int failedPayments = order.getOwner().incrementAndGetFailedPayments();
-            if(failedPayments >= 3) alertService.createAlert(order);
+            //if(failedPayments >= 3) alertService.createAlert(order);
+            if(failedPayments % 3 == 0) alertService.createAlert(order);
             userService.save(order.getOwner());
         }
 

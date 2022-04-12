@@ -42,6 +42,8 @@ public class LoginFilter extends HttpFilter {
             return;
         }
 
+        request.setAttribute("username", username);
+
         chain.doFilter(request, response);
     }
 }

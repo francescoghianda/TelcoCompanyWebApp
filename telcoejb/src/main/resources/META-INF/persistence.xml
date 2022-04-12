@@ -4,12 +4,13 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
   <persistence-unit name="default">
-
+    <class>it.polimi.telcoejb.entities.statistics.PurchasesPerPackageAndValidityPeriodPK</class>
   </persistence-unit>
 
   <persistence-unit name="TelcoEJB" transaction-type="JTA">
     <jta-data-source>Telco_Database</jta-data-source>
     <class>it.polimi.telcoejb.entities.User</class>
+    <class>it.polimi.telcoejb.entities.statistics.PurchasesPerPackageAndValidityPeriodPK</class>
     <properties>
       <property name="openjpa.Log" value="DefaultLevel=WARN,Runtime=WARN,Tool=WARN,SQL=TRACE"/>
     </properties>

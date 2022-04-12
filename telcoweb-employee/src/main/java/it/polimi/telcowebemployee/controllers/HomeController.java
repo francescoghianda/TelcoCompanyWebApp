@@ -32,8 +32,8 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String username = (String) req.getSession().getAttribute("username");
-        req.setAttribute("username", username);
+        //String username = (String) req.getSession().getAttribute("username");
+        //req.setAttribute("username", username);
 
         List<Service> services = serviceService.getAll();
         List<OptionalProduct> optionalProducts = optionalProductService.getAll();

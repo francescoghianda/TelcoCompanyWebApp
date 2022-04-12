@@ -9,7 +9,8 @@
 
     <h3 class="navbar__item white" style="user-select: none;">Employee Dashboard</h3>
 
-    <a class="navbar__item white" href="<c:url value=""/>">Home</a>
+    <a class="navbar__item white" href="<c:url value="/"/>">Home</a>
+    <a class="navbar__item white" href="<c:url value="/sales-report"/>">Sales Report</a>
 
     <div class="navbar__spacer"></div>
 

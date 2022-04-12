@@ -3,6 +3,7 @@
   <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="mysql">
     <option name="defaultUnitInitialized" value="true" />
     <option name="reverseEngineeringLastDbConnectionId" value="1184f74b-e08c-4cc2-a75b-0c1d1062d71c" />
-    <option name="reLastEntityCreationPackage" value="telcoejb/src/main/java/it/polimi/telcoejb/entities" />
+    <option name="reLastEntityCreationPackage" value="telcoejb/src/main/java/it/polimi/telcoejb/entities/statistics" />
+    <option name="newEntityIdStrategy" />
   </component>
 </project>

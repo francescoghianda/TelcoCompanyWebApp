@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:useBean id="packages" scope="request" type="java.util.Set<it.polimi.telcoejb.entities.ServicePackage>"/>
+<jsp:useBean id="packages" scope="request" type="java.util.List<it.polimi.telcoejb.entities.ServicePackage>"/>
 
 <html>
 <head>

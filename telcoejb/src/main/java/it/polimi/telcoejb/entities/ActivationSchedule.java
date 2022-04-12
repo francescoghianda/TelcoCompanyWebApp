@@ -3,6 +3,7 @@ package it.polimi.telcoejb.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Table(name = "activation_schedule")
@@ -28,13 +29,13 @@ public class ActivationSchedule {
     @JoinTable(name = "activation_schedule_services",
             joinColumns = @JoinColumn(name = "activation_schedule_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "service_id", referencedColumnName = "id"))
-    private Set<Service> services;
+    private List<Service> services;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "activation_schedule_optional_products",
             joinColumns = @JoinColumn(name = "activation_schedule_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "optional_product_id", referencedColumnName = "id"))
-    private Set<OptionalProduct> optionalProducts;
+    private List<OptionalProduct> optionalProducts;
 
     public LocalDate getDeactivationDate() {
         return deactivationDate;
@@ -68,19 +69,19 @@ public class ActivationSchedule {
         this.id = id;
     }
 
-    public Set<OptionalProduct> getOptionalProducts() {
+    public List<OptionalProduct> getOptionalProducts() {
         return optionalProducts;
     }
 
-    public void setOptionalProducts(Set<OptionalProduct> optionalProducts) {
+    public void setOptionalProducts(List<OptionalProduct> optionalProducts) {
         this.optionalProducts = optionalProducts;
     }
 
-    public Set<Service> getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
-    public void setServices(Set<Service> services) {
+    public void setServices(List<Service> services) {
         this.services = services;
     }
 }
