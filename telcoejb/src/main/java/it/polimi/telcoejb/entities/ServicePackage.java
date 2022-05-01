@@ -17,42 +17,28 @@ public class ServicePackage {
     @Column(name = "name")
     private String name;
 
-    /*@OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "service_package_service",
-            joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
-            inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
-    )
-    private Set<FixedPhoneService> fixedPhoneServices;*/
-
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_service",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
     )
     private List<PhoneService> phoneServices;
 
-    /*@OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "service_package_service",
-            joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
-            inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
-    )
-    private Set<FixedInternetService> fixedInternetServices;*/
-
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_service",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="service_id", referencedColumnName="id")
     )
     private List<InternetService> internetServices;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_optional_product",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="optional_product_id", referencedColumnName="id")
     )
     private List<OptionalProduct> optionalProducts;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "service_package_validity_period",
             joinColumns = @JoinColumn(name="service_package_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="validity_period_id", referencedColumnName="id")
@@ -106,21 +92,6 @@ public class ServicePackage {
     public void setValidityPeriods(List<ValidityPeriod> validityPeriods){
         this.validityPeriods = validityPeriods;
     }
-    /*public void setPhoneServices(List<PhoneService> phoneServices){
-        this.phoneServices = phoneServices;
-    }
-
-    public void addInternetServices(List<InternetService> internetServices){
-        this.internetServices = internetServices;
-    }
-
-    public void setOptionalProducts(List<OptionalProduct> optionalProducts){
-        this.optionalProducts = optionalProducts;
-    }
-
-    public void setValidityPeriods(List<ValidityPeriod> validityPeriods){
-        this.validityPeriods = validityPeriods;
-    }*/
 
     public List<Service> getAllService(){
         List<Service> services = new ArrayList<>();

@@ -12,17 +12,17 @@ public class ActivationSchedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "activation_date", nullable = false)
+    @Column(name = "activation_date")
     private LocalDate activationDate;
 
-    @Column(name = "deactivation_date", nullable = false)
+    @Column(name = "deactivation_date")
     private LocalDate deactivationDate;
 
     @ManyToMany(fetch = FetchType.EAGER)

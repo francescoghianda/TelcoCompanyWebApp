@@ -8,7 +8,11 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
-@NamedQuery(name = "Order.findRejectedOrder", query = "SELECT ord FROM Order ord WHERE ord.status = it.polimi.telcoejb.utils.OrderStatus.REJECTED AND ord.owner.username = :username")
+@NamedQuery(name = "Order.findRejectedOrder",
+        query = "SELECT ord " +
+                  "FROM Order ord " +
+                 "WHERE ord.status = it.polimi.telcoejb.utils.OrderStatus.REJECTED " +
+                   "AND ord.owner.username = :username")
 @Table(name = "`order`")
 @Entity
 public class Order {

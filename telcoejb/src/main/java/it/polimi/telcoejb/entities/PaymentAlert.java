@@ -11,10 +11,10 @@ public class PaymentAlert {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumns(
             {@JoinColumn(name = "user_id", referencedColumnName = "id"),
             @JoinColumn(name = "username", referencedColumnName = "username"),
@@ -22,10 +22,10 @@ public class PaymentAlert {
     )
     private User user;
 
-    @Column(name = "amount", nullable = false)
+    @Column(name = "amount")
     private Float amount;
 
-    @Column(name = "creation_time", nullable = false)
+    @Column(name = "creation_time")
     private Timestamp creationTime;
 
     public Timestamp getCreationTime() {

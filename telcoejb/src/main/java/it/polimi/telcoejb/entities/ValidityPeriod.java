@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "validity_period")
-@NamedQuery(name = "ValidityPeriod.findAll", query = "SELECT p from ValidityPeriod p ORDER BY p.months ASC")
+@NamedQuery(name = "ValidityPeriod.findAll", query = "SELECT p " +
+                                                       "FROM ValidityPeriod p " +
+                                                   "ORDER BY p.months ASC")
 public class ValidityPeriod {
 
     @Id

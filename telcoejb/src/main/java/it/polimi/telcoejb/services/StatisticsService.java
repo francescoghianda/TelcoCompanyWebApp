@@ -45,5 +45,4 @@ public class StatisticsService {
                 .stream().map(UserSuspendedOrder::getOrder).collect(Collectors.toList());
     }
 
-
 }

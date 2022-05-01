@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
-@NamedQuery(name = "User.findInsolvent", query = "SELECT u FROM User u where u.insolvent = true")
+@NamedQuery(name = "User.findInsolvent", query = "SELECT u FROM User u WHERE u.insolvent = true")
 @Table(name = "user")
 @Entity
 public class User {
