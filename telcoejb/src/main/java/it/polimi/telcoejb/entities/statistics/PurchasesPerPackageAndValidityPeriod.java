@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "stat_purchases_per_package_and_validity_period")
-@NamedQuery(name = "PurchasesPerPackageAndValidityPeriod.findAll", query = "select stat from PurchasesPerPackageAndValidityPeriod stat order by stat.totalPurchases desc")
+@NamedQuery(name = "PurchasesPerPackageAndValidityPeriod.findAll", query = "select stat from PurchasesPerPackageAndValidityPeriod stat order by stat.servicePackage.name, stat.totalPurchases desc")
 public class PurchasesPerPackageAndValidityPeriod {
 
     @EmbeddedId

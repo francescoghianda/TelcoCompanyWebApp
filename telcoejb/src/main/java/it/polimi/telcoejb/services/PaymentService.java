@@ -30,7 +30,8 @@ public class PaymentService {
 
             if(order.getStatus().equals(OrderStatus.REJECTED)){
                 List<Order> rejectedOrders = orderService.findRejectedOrder(order.getOwner().getUsername());
-                if(rejectedOrders.isEmpty()) order.getOwner().setInsolvent(false);
+                if(rejectedOrders.size() == 1) order.getOwner().setInsolvent(false);
+                //if(rejectedOrders.isEmpty()) L'ordine corrente è ancora REJECTED
                 userService.save(order.getOwner());
             }
 
